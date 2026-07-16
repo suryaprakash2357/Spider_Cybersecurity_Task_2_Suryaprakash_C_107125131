@@ -1,0 +1,11 @@
+I watched the Videos given & YT Videos to learn Basic and Intermediate C and Network C
+Then I watched YT videos about Networking Stuff
+Then I revised my notes for Cryptography (Task 1 Basic Task Notes)
+I have a lot pending. Time was not sufficient to complete them. I went out during holidays.
+
+Pending :
+Tripwire
+Readme & Write ups
+Testing files
+Demo Video
+Codecrafters Challenge 
