@@ -21,7 +21,7 @@ uint64_t dh_generate_shared(uint64_t pvtkey,uint64_t other_public,uint64_t p){
 
 static uint64_t lcg_state;
 
-static uint64_t lcg_next(){
+static uint64_t lcg_next(void){
     lcg_state = (lcg_state*1103515245ULL + 12345ULL) & 0xFFFFFFFFULL;
     return lcg_state;
 }
