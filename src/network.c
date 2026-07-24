@@ -12,8 +12,8 @@
 #include "crypto.h"
 
 int create_tcpsock(void){
-    int sock = socket(AF_INET, SOCK_STREAM, 0);
-    if (sock < 0) {
+    int sock = socket(AF_INET, SOCK_STREAM,0);
+    if (sock<0) {
         perror("socket");
         return -1;
     }
@@ -22,7 +22,7 @@ int create_tcpsock(void){
 
 void nittalk_listen(int port) {
     int server_fd = create_tcpsock();
-    if (server_fd < 0) return;
+    if (server_fd<0) return;
     int opt = 1;
     setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
     struct sockaddr_in addr;
@@ -75,7 +75,7 @@ void nittalk_listen(int port) {
         while (total<payload_size){
             ssize_t n = recv(client_fd, cipher + total, payload_size - total, 0);
             if (n <= 0){
-                fprintf(stderr, "Connection lost during transfer\n");
+                fprintf(stderr,"Connection lost during transfer\n");
                 free(cipher);
                 close(client_fd);
                 return;}
@@ -92,7 +92,7 @@ void nittalk_listen(int port) {
         xor_decrypt(cipher, plain, payload_size, shared_key);
 
         char save_path[256];
-        snprintf(save_path, sizeof(save_path), "received_%s", hdr.filename);
+        snprintf(save_path,sizeof(save_path),"received_%s", hdr.filename);
         FILE *out = fopen(save_path,"wb");
         if (!out){
             perror("fopen");
@@ -175,7 +175,7 @@ void nittalk_send(char *ip, char *filepath){
         return;}
 
     struct packet_header hdr;
-    memcpy(hdr.magic, "NIT\0", 4);
+    memcpy(hdr.magic,"NIT\0", 4);
     char *base = strrchr(filepath,'/');
     if(base) base++;
     else base = (char*)filepath;
