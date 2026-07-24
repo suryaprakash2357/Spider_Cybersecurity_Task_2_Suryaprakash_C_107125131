@@ -21,24 +21,24 @@ void shell_cd(char **args){
 }
 
 int parse_command(char *line, char **args){
-    int i = 0;
+    int i=0;
     char *token = strtok(line, " \t\n");
-    while(token != NULL && i < MAX_ARGS - 1){
+    while(token!=NULL && i<MAX_ARGS-1){
         args[i++] = token;
-        token = strtok(NULL, " \t\n");
+        token = strtok(NULL," \t\n");
     }
-    args[i] = NULL;
+    args[i]=NULL;
     return i;
 }
 
 void execute_external(char **args){
-    pid_t pid = fork();
-    if (pid == 0){
+    pid_t pid=fork();
+    if(pid==0){
         execvp(args[0], args);
         perror("execvp");
         exit(1);
     }
-    else if (pid < 0) {
+    else if(pid<0) {
         perror("fork");
     }
     else{
@@ -59,7 +59,6 @@ void shell_loop(){
 
         argc = parse_command(line, args);
         if (argc == 0) continue;
-
         if (strcmp(args[0], "exit") == 0){
             printf("Exiting shell...\n");
             break;
