@@ -15,7 +15,7 @@ struct packet_header{
 };
 #pragma pack(pop)
 
-int create_tcp_socket(void);
+int create_tcpsock(void);
 void handle_nittalk(char **args, int argc);
 
 #endif
