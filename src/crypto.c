@@ -3,14 +3,14 @@
 #include <string.h>
 
 uint64_t mod_pow(uint64_t base, uint64_t exp, uint64_t mod){
-    uint64_t result = 1;
-    base = base%mod;
-    while (exp>0){
-        if (exp & 1){
-            result = (result*base)%mod;
+    uint64_t result=1;
+    base=base%mod;
+    while(exp>0){
+        if(exp%2!=0){
+            result=(result*base)%mod;
         }
-        base = (base*base)% mod;
-        exp >>= 1;
+        base=(base*base)% mod;
+        exp/=2;
     }
     return result;
 }
@@ -21,7 +21,7 @@ uint64_t dh_generate_shared(uint64_t pvtkey,uint64_t other_public,uint64_t p){
 
 static uint64_t lcg_state;
 
-static uint64_t lcg_next(void){
+static uint64_t lcg_next(){
     lcg_state = (lcg_state*1103515245ULL + 12345ULL) & 0xFFFFFFFFULL;
     return lcg_state;
 }
