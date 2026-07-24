@@ -57,8 +57,6 @@ Contains all header files:
 - `crypto.h`
 - `tripwire.h`
 
-It is better practice to keep declarations in header files, separate from implementation.
-
 ### `Makefile`
 Builds the project into the `octo-shell` and `tripwire` executables.
 
